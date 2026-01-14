@@ -1,0 +1,125 @@
+%
+% Robot System Design Laboratory Thesis Style File 
+%
+% Modified by Kenichi Ohara, Meijo Univ.
+% Defined by Tomohiro UMETANI, Osaka Univ.
+% 
+% Ver. 1.1 Dec. 27. 2016
+% Ver. 1.0  Jan. 24, 2004
+%
+%	\UTF{0095}\UTF{00CF}\UTF{008D}X\UTF{0093}_
+%
+% 	\chapter{} \UTF{0082}\UTF{00C9}\UTF{0082}\UTF{00C4} \UTF{008F}\UTF{00CD}\UTF{0094}\UTF{00E0}\UTF{0083}y\UTF{0081}[\UTF{0083}W\UTF{0082}\UTF{00F0}\UTF{0090}¶\UTF{0090}¬
+%	\UTF{008E}Q\UTF{008D}l\UTF{0095}¶\UTF{008C}£\UTF{0082}\UTF{00CC}\UTF{008D}\UTF{00C5}\UTF{008F}\UTF{0089}\UTF{0082}\UTF{00F0}\UTF{0081}u\UTF{008E}Q\UTF{008D}l\UTF{0095}¶\UTF{008C}£\UTF{0081}v\UTF{0082}\UTF{00C9}%
+%	\UTF{008A}e\UTF{0083}y\UTF{0081}[\UTF{0083}W\UTF{0082}\UTF{00C5}\UTF{0082}\UTF{00CC}\UTF{008F}\UTF{0091}\UTF{008E}\UTF{00AE}\UTF{0082}\UTF{00CC}\UTF{0095}\UTF{00CF}\UTF{008D}X (fancyhdr.sty \UTF{0082}\UTF{00F0}\UTF{0097}\UTF{0098}\UTF{0097}p)
+%
+
+\typeout{Using Package `Arailab-thesis'. <Jan. 24, 2004>}
+
+% \UTF{008F}\UTF{00CD}\UTF{0094}\UTF{00E0}\UTF{0083}y\UTF{0081}[\UTF{0083}W\UTF{0082}\UTF{00CC}\UTF{008D}\UTF{00EC}\UTF{0090}¬(\chapter\UTF{0082}\UTF{00CC}\UTF{008D}\UTF{00C4}\UTF{0092}\UTF{00E8}\UTF{008B}`)
+\renewcommand{\chapter}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+%   \thispagestyle{empty}
+  \thispagestyle{jpl@in}%
+  \global\@topnum\z@
+  \@afterindentfalse
+  \secdef\@chapter\@schapter
+}
+\def\@chapter[#1]#2{%
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{chapter}%
+    \typeout{\@chapapp\space\thechapter\space\@chappos}%
+    \addcontentsline{toc}{chapter}%
+      {\protect\numberline{\@chapapp\thechapter\@chappos}#1}%
+  \else
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#1}%
+  \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+  \@makechapterhead{#2}\@afterheading}
+\def\@makechapterhead#1{\hbox{}%
+  \vskip2\Cvs
+  {\parindent\z@
+   \raggedright
+   \reset@font\huge\bfseries
+   \ifnum \c@secnumdepth >\m@ne
+  \thispagestyle{empty}
+%     \setlength\@tempdima{\linewidth}%
+%     \setbox\z@\hbox{\@chapapp\thechapter\@chappos\hskip1zw}%
+%     \addtolength\@tempdima{-\wd\z@}%
+%     \unhbox\z@\nobreak
+%     \vtop{\hsize\@tempdima#1}%
+	\vskip9\Cvs
+     	\begin{center}
+	\@chapapp\ \thechapter\ \@chappos
+	\par\vskip0.5\baselineskip
+	\huge\bfseries#1%
+	\end{center}
+  \if@openright\cleardoublepage\else\clearpage\fi
+   \else
+     #1\relax
+   \fi}\nobreak\vskip3\Cvs}
+\def\@schapter#1{%
+  \@makeschapterhead{#1}\@afterheading
+}
+\def\@makeschapterhead#1{\hbox{}%
+  \vskip2\Cvs
+  {\parindent\z@
+   \raggedright
+   \reset@font\huge\bfseries
+   \setlength\@tempdima{\linewidth}%
+   \vtop{\hsize\@tempdima#1}}\vskip3\Cvs}
+
+% \UTF{0083}L\UTF{0083}\UTF{0083}\UTF{0083}v\UTF{0083}V\UTF{0083}\UTF{0087}\UTF{0083}\UTF{0093}\UTF{0082}\UTF{00F0}\UTF{0089}\UTF{00F1}\UTF{0082}\UTF{00E8}\UTF{008D}\UTF{009E}\UTF{0082}\UTF{00DC}\UTF{0082}\UTF{00C8}\UTF{0082}¢\UTF{0082}\UTF{00E6}\UTF{0082}\UTF{20AC}\UTF{0082}\UTF{00C9}\UTF{0082}\UTF{00B7}\UTF{0082}\UTF{00E9}%
+\setlength\abovecaptionskip{10\p@}	% \UTF{0083}L\UTF{0083}\UTF{0083}\UTF{0083}v\UTF{0083}V\UTF{0083}\UTF{0087}\UTF{0083}\UTF{0093}\UTF{008F}\UTF{00E3}\UTF{0091}\UTF{20AC}\UTF{0082}\UTF{00CC}\UTF{008B}\UTF{00F3}\UTF{0094}\UTF{0092}(10\p@ => 10pt)
+\setlength\belowcaptionskip{5\p@}	% \UTF{0083}L\UTF{0083}\UTF{0083}\UTF{0083}v\UTF{0083}V\UTF{0083}\UTF{0087}\UTF{0083}\UTF{0093}\UTF{0089}\UTF{00BA}\UTF{0091}\UTF{20AC}\UTF{0082}\UTF{00CC}\UTF{008B}\UTF{00F3}\UTF{0094}\UTF{0092}  
+\long\def\@makecaption#1#2{% #1: <number>, #2 <caption>
+	\vskip\abovecaptionskip
+	\setbox\z@=\hbox{\textbf{#1}:~}% % \UTF{0090}}\UTF{0094}\UTF{00D4}\UTF{008D}\UTF{0086}\UTF{0082}\UTF{00CD}\UTF{0091}\UTF{0178}\UTF{008E}\UTF{009A}\UTF{0081}C\UTF{0083}R\UTF{0083}\UTF{008D}\UTF{0083}\UTF{0093}\UTF{0082}\UTF{00F0}\UTF{0082}\UTF{00C2}\UTF{0082}\UTF{00AF}\UTF{0082}\UTF{00E9}%
+	\setbox\tw@=\hbox{#2}%
+	\@tempdima\hsize
+	\advance \@tempdima by-\wd\z@
+	\ifdim \wd\tw@>\@tempdima
+		\leavevmode\box\z@
+		\parbox[t]{\@tempdima}{#2}\par
+	\else
+		\@minipagefalse
+		\hbox to\hsize{\hfil\box\z@\box\tw@\hfil}%
+	\fi
+	\vskip\belowcaptionskip}
+
+% \UTF{0083}w\UTF{0083}b\UTF{0083}_\UTF{0083}T\UTF{0083}C\UTF{0083}Y\UTF{0082}\UTF{00CC}\UTF{0095}\UTF{00CF}\UTF{008D}X
+
+\headheight18pt
+
+% \UTF{008E}Q\UTF{008D}l\UTF{0095}¶\UTF{008C}£\UTF{008C}\UTF{00A9}\UTF{008F}o\UTF{0082}\UTF{00B5}\UTF{0082}\UTF{00F0}\UTF{0081}u\UTF{008E}Q\UTF{008D}l\UTF{0095}¶\UTF{008C}£\UTF{0081}v\UTF{0082}\UTF{00C9}(Original: \UTF{008A}\UTF{00D6}\UTF{0098}A\UTF{0090}}\UTF{008F}\UTF{0091})
+\renewcommand{\bibname}{\UTF{008E}Q\UTF{008D}l\UTF{0095}¶\UTF{008C}£}
+
+% \UTF{0090}}\UTF{0095}\\UTF{0083}L\UTF{0083}\UTF{0083}\UTF{0083}v\UTF{0083}V\UTF{0083}\UTF{0087}\UTF{0083}\UTF{0093}\UTF{0082}\UTF{00CC}\UTF{0092}\UTF{00E8}\UTF{008B}`
+\def\tablename{Table }
+\def\figurename{Figure}
+
+% \UTF{0083}y\UTF{0081}[\UTF{0083}W\UTF{008F}\UTF{0091}\UTF{008E}\UTF{00AE}\UTF{0082}\UTF{00CC}\UTF{0092}\UTF{00E8}\UTF{008B}`\UTF{0081}i\UTF{0082}\UTF{00A0}\UTF{0082}\UTF{00EA}\UTF{0082}\UTF{00CE}\UTF{0082}±\UTF{0082}±\UTF{0082}\UTF{00C9}\UTF{008F}\UTF{0091}\UTF{0082}\UTF{00AD}\UTF{0081}j
+\textwidth 160mm % \UTF{0083}e\UTF{0083}L\UTF{0083}X\UTF{0083}g\UTF{0082}\UTF{00CC}\UTF{0095}\UTF{009D}\UTF{0081}iA4\UTF{0082}\UTF{00CD}\UTF{008E}\UTF{0086}\UTF{0095}\UTF{009D}210mm)
+
+%\UTF{0097}]\UTF{0094}\UTF{0092}\UTF{0082}\UTF{00F0}\UTF{008E}\UTF{00A9}\UTF{0093}\UTF{00AE}\UTF{008C}v\UTF{008E}Z
+\oddsidemargin \paperwidth
+\advance\oddsidemargin by -\textwidth
+\oddsidemargin .5\oddsidemargin
+\advance\oddsidemargin by -1in
+\evensidemargin \oddsidemargin
+
+
+
+
+% \UTF{0083}y\UTF{0081}[\UTF{0083}W\UTF{0091}\UTF{00CC}\UTF{008D}\UTF{00D9}\UTF{0082}\UTF{00CC}\UTF{0092}\UTF{00E8}\UTF{008B}`(fancyhdr.sty\UTF{0082}\UTF{00F0}\UTF{0097}\UTF{0098}\UTF{0097}p)
+
+\usepackage{fancyhdr}
+\lhead{}
+\chead{}
+%\rhead{\slshape \rightmark}
+\rhead{\rightmark}
+\cfoot{\thepage}
+
+\pagestyle{fancy}

@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt,fleqn]{jreport}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath,txfonts}
+\usepackage{theorem}
+\usepackage{subfigure}
+\usepackage{include/cite}
+\usepackage{include/RSDLAB-thesis}
+\renewcommand{\bibname}{参考文献}
+%usepackage{./include/MeijoMaster}%%章ページにページ番号を表示する場合に読み込む
+% \includeonly{chapters/experiment}
+\usepackage{graphicx}
+\graphicspath{
+	{picture/intro/}
+	{picture/related/}
+	{picture/system/}
+	{picture/experiment/}
+	{picture/conclusion/}
+}
+\usepackage{multirow}
+
+%¥usepackage{comment}
+%
+%¥theoremstyle{break}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{6}
+\renewcommand{\thesubsubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+\begin{document}
+\pagestyle{fancy}
+\thispagestyle{empty} %ノンブルと柱の設定
+\input{sec/title} %タイトル
+\newpage %改ページ
+
+\thispagestyle{empty}
+\input{sec/abstract} %概要
+
+\clearpage %?
+\pagenumbering{roman} %目次のノンブルの書体
+\setcounter{page}{1} %目次のノンブルの番号の強制指定
+
+\tableofcontents %目次の作成
+\markright{目次} %２
+
+\markright{図目次}
+\listoffigures %図目次
+
+\listoftables %表目次
+\markright{表目次}
+\newpage
+
+
+\pagenumbering{arabic} %本文のノンブルの書体
+\setcounter{page}{1} %本文のノンブルの番号の強制指定
+
+%本文
+\input{sec/introduction} %緒言
+\input{sec/information} %提案設計工程の事前情報
+\input{sec/proposal} %提案設計工程の構築
+\input{sec/youthcase} %適用ユースケース
+\input{sec/results} %提案工程の適用結果
+\input{sec/discussion} %結言
+\input{sec/acknowledgement} %謝辞
+
+%bibTeX(参考文献)の設定
+\bibliography{sec/bib}
+\bibliographystyle{jplain}
+\end{document}
