@@ -1,4 +1,4 @@
-\chapter{提案設計工程の事前情報}
+\chapter{提案設計工程と適用ユースケースの事前情報}
 
 \section{はじめに}
 本章では, 本研究で使用するRA, SysML, 自動化レベルについて説明する. また, 従来のロボットシステムの設計工程および従来のRA手法を整理し, 本研究の位置づけを確認する. 
@@ -31,19 +31,103 @@
     \label{cover}
 \end{figure}
 
-今回使用したRAシートリスク値の計算では積算法(一部加算法)を使用する. この計算方法では, リスク値Rを, 危害のひどさSと, 危険にさらされる頻度F, 発生確率Ps, 回避可能性Aの和との積で表す. 
-\begin{equation}
-R = S \times (F + P_s + A)
-\end{equation}
-各指標は, RAシートに基づき定性的に評価し, その組み合わせからリスクレベルを算出する. 本研究では, リスクレベルが7以上の項目に対して低減策を検討する. 
 \subsubsection{初期分析・評価シート}
+初期分析・評価シートでは, 危険源の特定とリスク評価を行う. まず, 表紙に記載した意図した使用・予見できる誤使用からリスクシナリオを検討し, 危険源を特定する. そして, そのリスクが引き起こす可能性のある危害を検討して, 表紙の起債に従ってリスクを評価する. その後, 各リスクに対してリスクレベルを算出する. その後, リスク項目に対して低減策を検討していく. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 120mm]{analysis.png}
+    \caption{analysis of RA sheet}
+    \label{analysis}
+\end{figure}
 
 \subsubsection{方策後再分析シート}
+方策後再分析シートでは, 検討された低減策の効果を再評価する. 低減策を実施した後、再度リスクレベルを算出し、その結果が許容可能な水準に達しているか確認する. 本研究では, リスクレベルが15以下となるように低減策を検討する. なお, 低減策は組み合わせ場合の数値も考慮できる. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 150mm]{reanalysis.png}
+    \caption{reanalysis of RA sheet}
+    \label{reanalysis}
+\end{figure}
 
 \subsubsection{基本仕様}
 
-\subsection{SafeMLとは}
+\subsubsection{リスク値の計算}
+今回使用したRAシートリスク値の計算では積算法(一部加算法)を使用する. この計算方法では, リスク値Rを, 危害のひどさSと, 危険にさらされる頻度F, 発生確率Ps, 回避可能性Aの和との積で表す. \[R = S \times (F + P_s + A)\]各指標は, RAシートに基づき定性的に評価し, その組み合わせからリスクレベルを算出する. 本研究では, リスクレベルが7以上の項目に対して低減策を検討する. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 90mm]{risk_cal.png}
+    \caption{risk calculation of RA sheet}
+    \label{risk_cal}
+\end{figure}
+
+\subsection{SafeML(Safe Model Language)とは}
+SafeML[][]とは, ロボットシステムの安全設計を支援するためのモデリング言語である. SafeMLは, SysMLを基盤としており, ロボットシステムの安全要件や安全機能を明確に表現できるように拡張されている. SafeMLを用いることで, ロボットシステムの設計段階から安全性を考慮したモデルを作成し, 安全設計を視覚化する. これにより, ロボットシステムの開発において, 安全性の確保が効率的かつ効果的に行えるようになる. 具体的には, SafeMLは以下の要素を含む.
+%
+\begin{itemize}
+  \item Hazard block：危険源を表すブロック
+  \item Harm block：危害を表すブロック
+  \item Harm context block：危険事象や危険状態を表すブロック
+  \item Defence block：リスク低減策を表すブロック
+  \item Defence result block：低減策の効果を表すブロック
+\end{itemize}
+%
+各要素の関係を以下に示す. 
+%
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 100mm]{safeml.png}
+    \caption{SafeML Model}
+    \label{smodel}
+\end{figure}
+%
+このように, 危険源は単体で存在する場合は危害が発生しない. 危険源が存在する状況下で危険事象や危険状態が発生することにより, 危害をもたらすという因果関係を表現している.
 
 \section{ロボットシステムの設計工程}
+本研究では, ロボットシステムを設計する際の参照可能なテンプレートドキュメント作成を目的としている. そのため, 図として設計工程を残すことが出来るSysMLを用いた設計工程を参考とする. 以下にSysMLの概要と, ロボットシステムの設計工程について説明する.
 
-\section{自動化レベル}
+\subsection{SysML(Systems Modeling Language)とは}
+ロボットのシステム設計工程としては, SysMLを用いた設計工程がある. SysML[][]とは, システムエンジニアリングに特化したモデリング言語であり, 複雑なシステムの設計・分析・検証を支援するために開発された. SysMLは, UML(Unified Modeling Language)を基盤としており, システムの構造や振る舞いを視覚的に表現できるように拡張されている. SysMLを用いることで, システムの要件定義から設計・実装・検証までの各段階で, 効率的かつ効果的にシステム開発を進めることができる. 本研究では以下のダイアグラムを作成する. 
+\begin{itemize}
+  \item ドメイン構成図
+  \item コンテキスト図
+  \item 要求図：システムに必要な要求を明確化する
+  \item アクティビティ図：システムの動作の流れを明確化する
+  \item ユースケース図：システムが外部に提供する機能を明確化する
+  \item ブロック定義図：システムの構成要素とその関係を明確化する
+\end{itemize}
+以下に, 本研究で各ダイアグラムの説明をする. 
+\subsubsection{ドメイン構成図}
+
+
+\subsubsection{コンテキスト図}
+
+
+\subsubsection{要求図}
+
+
+\subsubsection{アクティビティ図}
+
+
+\subsubsection{ユースケース図}
+
+
+\subsubsection{ブロック定義図}
+
+\section{自動化レベル(Level of Automation)}
+本研究では, 包括的なユースケースに対してRAを実施していく. その際に, 自動化レベル(以下, LOAとする)を参考にしてロボットを分類してユースケースを検討する. 自動化レベルとは, []で定義されているロボットを4つの項目
+\begin{itemize}
+  \item Monitoring：監視
+  \item Generating：生成
+  \item Selecting：選択
+  \item Implementing：実行
+\end{itemize}
+に対して人とコンピュータどちらが担うかで10段階に分類した表である. 以下に自動化レベルの表を示す.
+\begin{table}[btph]
+    \centering
+    \caption{Level of Automation}
+    \vspace{0mm}
+    \includegraphics[width = 150mm]{LOA.png}
+    \vspace{0mm}
+    \label{LOA_table}
+\end{table}
+本研究では, 遠隔操作ロボットを対象とする. そこで, LOAの表におけるMonitoringとGenerating, Implementingの項目に人が関与しているレベルと定義する. すると, レベル1からレベル4までが該当する. そこで, 本研究では, レベル1からレベル4までの4つの自動化レベルに分類してユースケースを検討する.
