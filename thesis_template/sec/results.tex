@@ -1,13 +1,76 @@
 \chapter{提案工程の適用結果}
-ここでは, 提案工程を各ユースケースに適用した結果について説明し, 考察を行う.
-\section{ダイアグラム化結果}
+本章では, 提案した設計工程を各自動化レベルに対応するユースケースへ適用した結果を示し, ダイアグラム化による設計表現および同定された危険源・リスクの特徴について整理する. さらに, これらの結果から得られた設計時の注意点について考察を行う.
 
+\section{ダイアグラム化結果}
+本節では, 提案した設計工程に基づき, 各ユースケースに対して作成した 
+要求図, アクティビティ図, ユースケース図について示す. 
+これらのダイアグラムは, リスクアセスメントの結果を反映することで,
+安全機能や人とロボットの役割分担を明確化したものである.
+
+\subsection{要求図}
+以下に, RA実施前後の要求図を示す. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 85mm]{requirement.jpg}
+    \caption{RA前の要求図}
+    \label{fig:requirement_before}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 150mm]{RArequirement.jpg}
+    \caption{RA後の要求図}
+    \label{fig:requirement_after}
+\end{figure}
+
+
+\subsection{アクティビティ図}
+
+\begin{figure}[htbp]
+  \begin{minipage}[b]{0.48\columnwidth}
+    \centering
+    \includegraphics[width=\columnwidth]{activity.jpg}
+    \caption{RA前のアクティビティ図}
+    \label{RA前のアクティビティ図}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.48\columnwidth}
+    \centering
+    \includegraphics[width=\columnwidth]{RAactivity.jpg}
+    \caption{RA後のアクティビティ図}
+    \label{RA後のアクティビティ図}
+  \end{minipage}
+\end{figure}
+
+
+\subsection{ユースケース図}
+
+\begin{figure}[htbp]
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{youthcase.jpg}
+    \caption{RA前のユースケース図}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{RAyouthcase.jpg}
+    \caption{RA後のユースケース図}
+  \end{minipage}
+\end{figure}
 
 \section{同定された危険源・リスク}
-
+本節では, 各ユースケースに対して実施したRAにより, 同定されたリスクについて整理する. 特に, 自動化レベルの違いによって顕在化するリスクの種類や特徴に着目し, 設計段階で考慮すべき点を明らかにする.以下に, LOAごとのシステムの違いと同定された危険源・リスク, 設計時に注意すべき事項をまとめた表を示す.
+\begin{table}[btph]
+    \centering
+    \caption{LOAごとのシステムの違いと同定された危険源・リスク}
+    \vspace{0mm}
+    \includegraphics[width = 170mm]{risk.png}
+    \vspace{0mm}
+    \label{tab:risk_table}
+\end{table}
 
 \section{設計時の注意点}
-
+前節までに示したダイアグラム化結果および同定されたリスクの分析を踏まえ, 本節では遠隔操作ロボットの設計時に留意すべき点について考察する. 特に, 自動化レベルの違いが安全設計に与える影響に着目し,設計工程において事前に検討すべき事項を整理する.
 
 \section{考察}
 
